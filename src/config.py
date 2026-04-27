@@ -6,6 +6,7 @@ Adjust any field here before training; nothing else needs to change.
 
 from dataclasses import dataclass, field
 from typing import Optional
+from pathlib import Path
 
 
 @dataclass
@@ -34,13 +35,18 @@ class LossConfig:
     delta:     float = 0.05  # Secret perceptual loss weight
 
 
+BASE_DIR = Path(__file__).resolve().parent
+ROOT_DIR = BASE_DIR.parent
+
 @dataclass
 class TrainConfig:
     """Training loop, optimizer, and I/O settings."""
 
     # ── Dataset paths ──────────────────────────────────────────
-    train_root:     str = "../data/imagenet/test"
-    val_root:       str = "../data/imagenet/val"
+    # train_root:     str = "../data/imagenet/test"
+    # val_root:       str = "../data/imagenet/val"
+    train_root:    Path = ROOT_DIR / "data/imagenet/test"
+    val_root:      Path = ROOT_DIR / "data/imagenet/val"
     train_max_size: int = 200   # Cap on training images (None = use all)
     val_max_size:   int = 20    # Cap on validation images
 
@@ -56,15 +62,17 @@ class TrainConfig:
     lr_gamma:     float = 0.5
 
     # ── Checkpointing ──────────────────────────────────────────
-    checkpoint_dir: str          = "../checkpoints"
-    save_every:     int          = 3          # Save periodic checkpoint every N epochs
+    # checkpoint_dir: str          = "../checkpoints"
+    checkpoint_dir:          Path = ROOT_DIR / "checkpoints"
+    save_every:               int = 3          # Save periodic checkpoint every N epochs
     resume_from:    Optional[str] = None      # Path to .pth to resume from
 
     # ── Logging & Visualisation ────────────────────────────────
     log_every:     int = 50   # Print batch loss every N steps
     val_every:     int = 1
     vis_every:     int = 3    # Save visualisation grid every N epochs
-    vis_dir:       str = "../outputs/vis"
+    # vis_dir:       str = "../outputs/vis"
+    vis_dir:      Path = ROOT_DIR / "output/vis"
     n_vis_samples: int = 4
 
 

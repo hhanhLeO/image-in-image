@@ -1,5 +1,6 @@
 data/
 imagenet-256/
 output/
+outputs/
 checkpoints/
 __pycache__
