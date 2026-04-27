@@ -134,6 +134,9 @@ image-in-image/
 ├── notebooks/
 │   └── deep_steganography.ipynb   ← Original Colab notebook
 │
+├── checkpoints/
+│   └── best_model.pth   ← Best model checkpoint
+|
 ├── samples/
 │   ├── cover.jpg             ← Quick-start example images
 │   └── secret.jpg
@@ -205,6 +208,18 @@ python src/train.py
 ```
 
 Checkpoints are saved to `checkpoint_dir` (configured in `config.py`). The best model by PSNR-secret is saved as `best_model.pth`.
+
+### Pre-trained model
+
+The trained model checkpoint (`best_model.pth`) is not included in this zip due to file size. Download it separately and place it in the `checkpoints/` folder.
+
+**Download:** [best_model.pth](https://drive.google.com/drive/folders/1Jim9D9y8nSet25A3tXQbH23WCW8rVzta?usp=sharing)
+
+Then place it at:
+
+```
+checkpoints/best_model.pth
+```
 
 ### CLI demo
 
